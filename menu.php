@@ -46,7 +46,7 @@ if(isset($_POST['Logoff2'])){$userID = $_SESSION['ID'];session_unset(); session_
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <link rel="stylesheet" href="css/bootstrap.min.css">
   <link rel="icon" href="img/logo.png">
-  <title>Stambeest</title>
+  <title>IT Solutions</title>
 </head>
 <body>
 	<!--initialiesatie menu-->
