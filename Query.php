@@ -1,8 +1,8 @@
 <?php
-
-function sleveranciers()
+function insertQuery($query)
 {
-	
+	include 'db.php';
+	$result= mysqli_query($db,$query);
 }
 
 ?>

@@ -7,14 +7,24 @@ include 'db.php';
 	<?php
 	if(isset($_POST["fToevoegen"]))
 	{
-		include 'Query.php';
-		echo "".$_POST["naam"]."";
+		include 'Query.php';		
+		$extra ="";
+		if(strlen($_POST["straat"])>0){$extra .= ", `leveranciers`.`Straatnaam`";}
+		if(strlen($_POST["toevoeging"])>0){$extra .= ", `leveranciers`.`toevoeging`";}
+		if(strlen($_POST["land"])>0){$extra .= ", `leveranciers`.`Land`";}
+		$query = "INSERT INTO `leveranciers` (`leveranciers`.`Naam`, `leveranciers`.`email`, `leveranciers`.`Huisnummer`, `leveranciers`.`PostCode`, `leveranciers`.`Telefoon` ";
+		$query .= "".$extra;
+		$query .= ")VALUES (\"".$_POST["naam"] ."\", \"".$_POST["email"] ."\", ".$_POST["huisnummer"] .", \"".$_POST["postcode"] ."\", ".$_POST["telefoon"] ."";
+		$extra = "";
+		if(strlen($_POST["straat"])>0){$extra .= ", \"".$_POST["straat"]."\"";}
+		if(strlen($_POST["toevoeging"])>0){$extra .= ", \"".$_POST["toevoeging"]."\"";}
+		if(strlen($_POST["land"])>0){$extra .= ", \"".$_POST["land"]."\"";}
+		$extra .= ')';
+		$query .= "".$extra;
 		
-		$query = "";
+		insertQuery($query);
+		echo '<br/><div style="text-align:center;">Het toevoegen van '.$_POST["naam"].' is gelukt!</div>';
 		
-		if(strlen($straat)>0){}
-		if(strlen($toevoeging)>0){}
-		if(strlen($land)>0){}
 	}
 	elseif(isset($_POST["telefoon"] )!= true){
 	?>
@@ -141,7 +151,7 @@ include 'db.php';
 					<label for="email">Email </label>
 				</td><td>	
 					<?php echo '<div class="mb-2" style="text-align:left;">'.$_POST["email"]."</div>"; ?>
-					<input type="hidden" value="<?php echo $_POST["email"] ?>">
+					<input type="hidden" name="email" value="<?php echo $_POST["email"] ?>">
 				</td>
 			</tr>
 			
@@ -150,7 +160,7 @@ include 'db.php';
 					<label for="straat">Straatnaam </label>
 				</td><td>	
 					<?php echo '<div name="straat" class="mb-2" style="text-align:left;">'.$_POST["straat"]."</div>"; ?>
-					<input type="hidden" name="email" value="<?php echo $_POST["straat"] ?>">
+					<input type="hidden" name="straat" value="<?php echo $_POST["straat"] ?>">
 				</td>
 			</tr>
 			
