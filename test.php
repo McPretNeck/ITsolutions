@@ -8,7 +8,10 @@ include 'db.php';
 	if(isset($_POST["fToevoegen"]))
 	{
 		include 'Query.php';
+		echo "".$_POST["naam"]."";
+		
 		$query = "";
+		
 		if(strlen($straat)>0){}
 		if(strlen($toevoeging)>0){}
 		if(strlen($land)>0){}
@@ -108,19 +111,14 @@ include 'db.php';
 	<?php
 	}
 	else{
-		$naam = $_POST["naam"];
-		$email = $_POST["email"];
-		$straat = $_POST["straat"];
-		$huisnr = $_POST["huisnummer"];
-		$toevoeging = $_POST["toevoeging"];
-		$postcode = $_POST["postcode"];
-		$land = $_POST["land"];
-		$telefoon =  $_POST["telefoon"];
+		
 	?>
 	
-	<table border="1" class="ml-auto mr-auto" style="text-align:right;">
+	<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
 		
-		<tbody>
+		<table border="1" class="ml-auto mr-auto" style="text-align:right;">
+		
+			<tbody>
 			
 			<tr>
 				<td colspan="2" style="text-align:center;">
@@ -134,6 +132,7 @@ include 'db.php';
 					<label for="name">Naam </label>
 				</td><td>
 					<?php echo '<div class="mb-2" style="text-align:left;">'.$_POST["naam"]."</div>"; ?>
+					<input type="hidden" name="naam" value="<?php echo $_POST["naam"] ?>">
 				</td>
 			</tr>
 			
@@ -142,6 +141,7 @@ include 'db.php';
 					<label for="email">Email </label>
 				</td><td>	
 					<?php echo '<div class="mb-2" style="text-align:left;">'.$_POST["email"]."</div>"; ?>
+					<input type="hidden" value="<?php echo $_POST["email"] ?>">
 				</td>
 			</tr>
 			
@@ -149,7 +149,8 @@ include 'db.php';
 				<td>
 					<label for="straat">Straatnaam </label>
 				</td><td>	
-					<?php echo '<div class="mb-2" style="text-align:left;">'.$_POST["straat"]."</div>"; ?>
+					<?php echo '<div name="straat" class="mb-2" style="text-align:left;">'.$_POST["straat"]."</div>"; ?>
+					<input type="hidden" name="email" value="<?php echo $_POST["straat"] ?>">
 				</td>
 			</tr>
 			
@@ -158,6 +159,7 @@ include 'db.php';
 					<label for="huisnummer">Huis nummer </label>
 				</td><td>	
 					<?php echo '<div class="mb-2" style="text-align:left;">'.$_POST["huisnummer"]."</div>"; ?>
+					<input type="hidden" name="huisnummer" value="<?php echo $_POST["huisnummer"] ?>">
 				</td>
 			</tr>
 			
@@ -166,6 +168,7 @@ include 'db.php';
 					<label for="toevoeging">Toevoeging </label>
 				</td><td>	
 					<?php echo '<div class="mb-2" style="text-align:left;">'.$_POST["toevoeging"]."</div>"; ?>
+					<input type="hidden" name="toevoeging" value="<?php echo $_POST["toevoeging"] ?>">
 				</td>
 			</tr>
 			
@@ -174,6 +177,7 @@ include 'db.php';
 					<label for="postcode">Postcode </label>
 				</td><td>	
 					<?php echo '<div class="mb-2" style="text-align:left;">'.$_POST["postcode"]."</div>"; ?>
+					<input type="hidden" name="postcode" value="<?php echo $_POST["postcode"] ?>">
 				</td>
 			</tr>
 			
@@ -182,6 +186,7 @@ include 'db.php';
 					<label for="land">Land </label>
 				</td><td>	
 					<?php echo '<div class="mb-2" style="text-align:left;">'.$_POST["land"]."</div>"; ?>
+					<input type="hidden" name="land" value="<?php echo $_POST["land"] ?>">
 				</td>
 			</tr>
 			
@@ -190,6 +195,7 @@ include 'db.php';
 					<label for="telefoon">Telefoon </label>
 				</td><td>	
 					<?php echo '<div class="mb-2" style="text-align:left;">'.$_POST["telefoon"]."</div>"; ?>
+					<input type="hidden" name="telefoon" value="<?php echo $_POST["telefoon"] ?>">
 				</td>
 			</tr>
 			
@@ -203,6 +209,7 @@ include 'db.php';
 		</tbody>
 		
 		</table>
+	</form>
 		<?php
 		
 			}
