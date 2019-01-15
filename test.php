@@ -30,9 +30,22 @@ include 'db.php';
 			
 			<tr>
 				<td>
-					<label for="email">Prijs<span style="color:Red;">*</span></label>
+					<label for="prijs">Prijs<span style="color:Red;">*</span></label>
 				</td><td>	
-					<span>€ </span><input type="number" min="0.00" step="0.01" name="email" id="email" required>
+					<span>€ </span><input type="number" min="0.00" step="0.01" name="prijs" id="prijs" required>
+				</td>
+			</tr>
+			
+			<tr>
+				<td>
+					<label for="leverancier">Leverancier<span style="color:Red;">*</span></label>
+				</td><td>				
+					<select type="number"name="leverancier" id="leverancier" required>
+						<?php
+							include 'myFunctions.php';
+							echo dropdownleveranciers();
+						?>
+					</select>
 				</td>
 			</tr>
 			
