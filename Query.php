@@ -5,6 +5,13 @@ function insertQuery($query)
 	$result= mysqli_query($db,$query);
 }
 
+function toevoegenProduct($naam, $prijs, $text, $leverancier)
+{
+	include 'db.php';
+	$query = "insert into `producten` (`producten`.`Naam`, `producten`.`Prijs`, `producten`.`Omschrijving`, `producten`.`LeveranciersID`) VALUES(\"".$naam."\", ".$prijs.", \"".$text."\", ".$leverancier.");";
+	$result = mysqli_query($db, $query);
+}
+
 function getLeveransiers()
 {
 	include 'db.php';
