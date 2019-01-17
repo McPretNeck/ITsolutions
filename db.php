@@ -6,9 +6,9 @@ $dbpass="";
 $dbname="its";
 
 //new online
-$dbhost="sql7.freemysqlhosting.net";
-$dbuser="sql7273416";
-$dbpass="jZ2kkDeeJ9";
+//$dbhost="sql7.freemysqlhosting.net";
+//$dbuser="sql7273416";
+//$dbpass="jZ2kkDeeJ9";
 $dbname="sql7273416";
 
 $db= mysqli_connect($dbhost,$dbuser,$dbpass,$dbname);

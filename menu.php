@@ -26,7 +26,7 @@ if(isset($_POST['Username'])){
 				$_SESSION["phonenumber"] = $row2["Telefoonnummer"]; 
 			}
 			$LogSucses = true;
-			header('Location: index.php');
+			header('Location: mindex.php');
 		}
 		}else
 		{
@@ -34,7 +34,7 @@ if(isset($_POST['Username'])){
 		$login_fail_msg = "De gebruikers gegevens zijn niet gevonden.";
 		}
 }
-if(isset($_POST['Logoff'])){session_unset(); session_destroy(); $LogSucses = false; header('Location: index.php');}
+if(isset($_POST['Logoff'])){session_unset(); session_destroy(); $LogSucses = false; header('Location: mindex.php');}
 if(isset($_POST['Logoff2'])){$userID = $_SESSION['ID'];session_unset(); session_destroy(); $LogSucses = false;}
 ?>
 <!DOCTYPE html>
@@ -52,7 +52,7 @@ if(isset($_POST['Logoff2'])){$userID = $_SESSION['ID'];session_unset(); session_
 	<!--initialiesatie menu-->
 	<nav class="navbar navbar-light sticky-top" style="background-color: #c4c4c4"> 
 		<div class="container">
-			<a class="navbar-brand" href="index.php"><img src="img/logo.svg" alt="Logosvg" style="width: 50px;"> Solutions</a>
+			<a class="navbar-brand" href="mindex.php"><img src="img/logo.svg" alt="Logosvg" style="width: 50px;"> Solutions</a>
 			<?php if(!$LogSucses){ ?>
 			<div class="navbar-nav ml-auto mr-2">
 				<a class="navbar-toggler btn-outline-secondary"
@@ -80,7 +80,7 @@ if(isset($_POST['Logoff2'])){$userID = $_SESSION['ID'];session_unset(); session_
 					</div>
 				</div>
 				<!--insert mail heren-->
-				<a class="navbar-brand" href="index.php"><img src="img/mail-var-outline.svg" alt="Logosvg" style="width: 30px;"></a>
+				<a class="navbar-brand" href="mindex.php"><img src="img/mail-var-outline.svg" alt="Logosvg" style="width: 30px;"></a>
 				<!--knop links-->
 			<button class="navbar-toggler btn-outline-secondary" type="button" 
 					data-toggle="collapse" data-target="#myTogglerNav" 
@@ -118,9 +118,10 @@ if(isset($_POST['Logoff2'])){$userID = $_SESSION['ID'];session_unset(); session_
 			<div class="collapse navbar-collapse" id="myTogglerNav" >
 				<div class="navbar-nav">
 				<div class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" id="navbardroppaarden" aria-haspopup="true" data-toggle="dropdown" aria-expanded="true">Sample</a>
+					<a class="nav-link dropdown-toggle" id="navbardroppaarden" aria-haspopup="true" data-toggle="dropdown" aria-expanded="true">Producten ect. toevoegen</a>
 					<div class="dropdown-menu">
-						<a class="dropdown-item" href="*">Sample</a>
+						<a class="dropdown-item" href="Product_toevoegen.php">Nieuw product</a>
+						<a class="dropdown-item" href="Leverancier_toevoegen.php">Nieuw leverancier</a>
 					</div>
 				</div>
 				<div class="nav-item dropdown">
