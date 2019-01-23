@@ -29,4 +29,9 @@ Function leverancierByID(int $x)
 	return $tekst;
 }
 
+Function ToevoegenKnop($ID)
+{
+	echo "De product code is:".$ID."!";
+}
+
 ?>

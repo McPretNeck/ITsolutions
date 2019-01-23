@@ -24,9 +24,7 @@ while($row = mysqli_fetch_assoc($result)){
 	$e = $row['Email'];
 	$t = $row['Telefoonnummer'];
 	
-echo"	
-		
-<tr><td>". $n."</td><td>". $e."</td><td>". $t."</td></tr>";}
+echo"<tr><td>". $n."</td><td>". $e."</td><td>". $t."</td></tr>";}
 echo   "</table> </form>";	 
 
 

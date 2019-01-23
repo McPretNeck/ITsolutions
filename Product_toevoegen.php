@@ -10,6 +10,8 @@ include 'db.php';
 		include 'Query.php';
 		toevoegenProduct($_POST["naam"], $_POST["prijs"], trim($_POST["message"]), $_POST["leverancier"]);
 		echo "<p style=\"text-align:center;\"> Product ".$_POST["naam"]." is toegevoegt!</p>";
+		echo "<form style=\"text-align:Center;\" class=\"ml-auto mr-auto\" action=\"Product_toevoegen.php\" method=\"POST\">";
+		echo "<div style=\"text-align:Center;\" class=\"ml-auto mr-auto\"><input style=\"text-align:Center;\"  	class=\"ml-auto mr-auto\" name=\"reload\" type=\"submit\" value=\"Nog een toevoegen\" /></div></form>";
 	}
 	elseif(isset($_POST["naam"])){
 	
