@@ -82,4 +82,38 @@ function getLeveransiersID()
 	return $x;
 }
 
+function getGebruikers()
+{
+	include 'db.php';
+	$query = "SELECT `Naam` FROM `gebruikers` ORDER BY `Naam` ASC";
+	$result = mysqli_query($db, $query);
+	$x=array();
+	
+	if (mysqli_num_rows($result) > 0) {
+	while($row = mysqli_fetch_assoc($result)) {
+		
+	array_push($x,$row["Naam"]);
+	
+	}}
+		
+	return $x;
+}
+
+function getAfdelingscode()
+{
+	include 'db.php';
+	$query = "SELECT `AfdCode` AS AFDELING FROM `afdelingen` ORDER BY `AfdCode` ASC";
+	$result = mysqli_query($db, $query);
+	$x=array();
+	
+	if (mysqli_num_rows($result) > 0) {
+	while($row = mysqli_fetch_assoc($result)) {
+		
+	array_push($x,$row["ID"]);
+	
+	}}
+		
+	return $x;
+}
+
 ?>

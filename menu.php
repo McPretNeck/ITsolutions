@@ -22,6 +22,7 @@ if(isset($_POST['Username'])){
 				$_SESSION["naam"] = $row2["Naam"];
 				$_SESSION["password"] = $row2["Wachtwoord"];
 				$_SESSION["rol"] = $row2["Rol"];
+				$_SESSION["AfdCode"] = $row2["AfdCode"];
 				$_SESSION["email"] = $row2["Email"];
 				$_SESSION["phonenumber"] = $row2["Telefoonnummer"]; 
 			}
@@ -105,7 +106,7 @@ if(isset($_POST['Logoff2'])){$userID = $_SESSION['ID'];session_unset(); session_
 							<input class="btn btn-primary mr-2" type="submit" value="Login" name="Login">
 						</div>
 						<div class="row">
-							<a class="mr-5" href="registreren_gebruiker.php">Registreren</a>
+							<a class="mr-5" href="*"></a>
 							<span class="ml-2 mr-4"></span><span class="mr-5"></span>
 							<a href="email_wachtwoord.php">wachtwoord vergeten ?</a>
 						</div>
@@ -132,9 +133,9 @@ if(isset($_POST['Logoff2'])){$userID = $_SESSION['ID'];session_unset(); session_
 				</div>
 				<?php if($_SESSION["ID"] == 1){?>
 				<div class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" id="navbardroplocatie" aria-haspopup="true" data-toggle="dropdown" aria-expanded="true">Sample</a>
+					<a class="nav-link dropdown-toggle" id="navbardroplocatie" aria-haspopup="true" data-toggle="dropdown" aria-expanded="true">Gebruikers</a>
 					<div class="dropdown-menu">
-						<a class="dropdown-item" href="*">Sample</a>
+						<a class="dropdown-item" href="registreren_gebruiker.php">Gebruikers Toevoegen</a>
 					</div>
 				</div>
 				<?php }?>
