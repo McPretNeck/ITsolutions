@@ -124,7 +124,7 @@ Function ArrayNaarPrijs($x, $ID)
 Function ProductOverzicht2($n, $p, $ID, $o, $a)
 {
 		$text = "
-	<table class=\"shadow mx-auto mt-5\" style=\"border:1px solid;\">
+	<table class=\"shadow mx-auto mt-3\" style=\"border:1px solid;\">
 	<span border=\"1\">
 	<tr>
 	<td>".$n."</td><td style=\"width:100px;\">

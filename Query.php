@@ -30,10 +30,12 @@ function toevoegenBestelling($x, $r)
 	
 	}}
 	
-	$query = "INSERT INTO `productenbesteld` (`BestellingID`,`ProductID`,`Aantal`) VALUES(".$ID.", ".$x[0][0].", ".$x[1][0].");";
+	
+	for($q=0;sizeof($x[0])>$q;$q++){
+	$query = "INSERT INTO `productenbesteld` (`BestellingID`,`ProductID`,`Aantal`) VALUES(".$ID.", ".$x[0][$q].", ".$x[1][$q].");";
 	echo $query."<br/><br />";
 	$result = mysqli_query($db, $query);
-
+	}
 }
 
 function getLeveransiers()

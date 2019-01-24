@@ -39,7 +39,6 @@ include 'db.php';
 				if($_POST[$_SESSION["Data"][0][$y]]>0)
 				{
 					//echo "Het product ". $_SESSION["Data"][0][$y] ." is ". $_POST[$_SESSION["Data"][0][$y]] ." keer besteld!<br/>";
-					echo ArrayNaarDataProducten2(getProductensByID(intval($_SESSION["Data"][0][$y]),intval($_POST[$_SESSION["Data"][0][$y]])));
 					$totaalPrijs = $totaalPrijs + ArrayNaarPrijs(getProductens(),intval($_SESSION["Data"][0][$y]));
 					ArrayNaarArray(getProductensByID(intval($_SESSION["Data"][0][$y]),intval($_POST[$_SESSION["Data"][0][$y]])));
 					
@@ -53,15 +52,25 @@ include 'db.php';
 			unset($_SESSION["PID"]);
 			unset($_SESSION["a"]);
 			
-			echo "<div style=\"width:600px;\" class=\"mx-auto mt-5\"><h3 class=\"float-center text-center\">De totaal prijs is geworden: €".$totaalPrijs."</h3></div><br/>";
-			?>
-				<div align="center">
+			echo "<div style=\"width:600px;\" class=\"mx-auto mt-3\"><h3 class=\"float-center text-center\">De totaal prijs is geworden: €".$totaalPrijs."</h3></div>"?>
+			<div align="center">
 					<h5>Vul uw reden voor deze aankoop hieronder in.</h5>
-					<textarea class="mb-3 mx-auto" rows="5" cols="60" name="Reden"></textarea>
+					<textarea class="mx-auto" rows="5" cols="60" name="Reden"></textarea>
 				</div>
 				<div align="center">
-					<input class="mb-5 mx-auto" type="submit" name="submitDB" value="Aanvraag opstellen">
+					<input class="mt-4 mx-auto" type="submit" name="submitDB" value="Aanvraag opstellen">
 				</div>
+			<?php
+			for($y=0; $y< sizeof($_SESSION["Data"][0]); $y++)
+			{
+				if($_POST[$_SESSION["Data"][0][$y]]>0)
+				{
+					//echo "Het product ". $_SESSION["Data"][0][$y] ." is ". $_POST[$_SESSION["Data"][0][$y]] ." keer besteld!<br/>";
+					echo ArrayNaarDataProducten2(getProductensByID(intval($_SESSION["Data"][0][$y]),intval($_POST[$_SESSION["Data"][0][$y]])));
+					
+				}
+			}
+			?>
 			</form>
 	<?php
 		}
