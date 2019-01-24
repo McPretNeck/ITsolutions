@@ -82,9 +82,32 @@ Function ArrayNaarDataProducten2($x)
 		$a = $x[4][$y];
 		$q .= ProductOverzicht2($n, $p, $ID, $o, $a);
 		
-	}//}
+	}
 	
 	return $q;
+}
+
+Function ArrayNaarArray($x)
+{
+	$q = "";
+	
+		for($y=0; $y< sizeof($x[0]); $y++)
+	{
+		
+		$ID = $x[0][$y];
+		$a = $x[4][$y];
+		if(isset($_SESSION["PID"])){
+		array_push($_SESSION["PID"], $ID);
+		array_push($_SESSION["a"], $a);
+		}
+		else
+		{
+		$_SESSION["PID"]=array($ID);
+		$_SESSION["a"]=array($a);
+		}
+		
+	}
+	
 }
 
 Function ArrayNaarPrijs($x, $ID)

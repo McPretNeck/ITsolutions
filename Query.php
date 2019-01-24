@@ -12,6 +12,30 @@ function toevoegenProduct($naam, $prijs, $text, $leverancier)
 	$result = mysqli_query($db, $query);
 }
 
+function toevoegenBestelling($x, $r)
+{
+	include 'db.php';
+	$ID= 0;
+	$query = "INSERT INTO `sql7273416`.`bestelling` (`GebruikerID`, `Status`, `Reden`) VALUES (".$_SESSION["ID"].", 'Nieuw', '".$r."');";
+	echo $query."<br/><br />";
+	$result = mysqli_query($db, $query);
+	
+	$query = "SELECT `BestellingID` AS `ID` FROM `bestelling` ORDER BY ID DESC LIMIT 1";
+	echo $query."<br/><br />";
+	$result = mysqli_query($db, $query);
+	if (mysqli_num_rows($result) > 0) {
+	while($row = mysqli_fetch_assoc($result)) {
+		
+	$ID = $row["ID"];
+	
+	}}
+	
+	$query = "INSERT INTO `productenbesteld` (`BestellingID`,`ProductID`,`Aantal`) VALUES(".$ID.", ".$x[0][0].", ".$x[1][0].");";
+	echo $query."<br/><br />";
+	$result = mysqli_query($db, $query);
+
+}
+
 function getLeveransiers()
 {
 	include 'db.php';
