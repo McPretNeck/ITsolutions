@@ -53,6 +53,34 @@ function getProductens()
 	return $producten;
 }
 
+function getProductensByID($ID, $TA)
+{
+	include 'db.php';
+	$query = "SELECT `ProductID` as 'ID', `Naam`, `Prijs`, `Omschrijving` FROM `producten`;";
+	$result = mysqli_query($db, $query);
+	$id=array();
+	$naam=array();
+	$prijs=array();
+	$aantal=array();
+	$omschrijving=array();
+	$text ="";
+	
+	if (mysqli_num_rows($result) > 0) {
+		while($row = mysqli_fetch_assoc($result)){
+			 if($row['ID']==$ID){
+			array_push($id, $row['ID']);
+			array_push($naam, $row['Naam']);
+			array_push($prijs, $row['Prijs']);
+			array_push($aantal, $TA);
+			array_push($omschrijving, $row['Omschrijving']);		
+			}
+		}	
+	}
+	
+	$producten=array($id,$naam,$prijs,$omschrijving,$aantal);
+	return $producten;
+}
+
 function getLeveransiersID()
 {
 	include 'db.php';

@@ -54,7 +54,7 @@ Function ArrayNaarDataProducten($x)
 Function ProductOverzicht($n, $p, $ID, $o)
 {
 		$text = "
-	<table class=\"shadow mx-auto mt-3\" style=\"border:1px solid;\">
+	<table class=\"shadow mx-auto mt-5\" style=\"border:1px solid;\">
 	<span border=\"1\">
 	<tr>
 	<td>".$n."</td><td style=\"width:100px;\">
@@ -63,7 +63,54 @@ Function ProductOverzicht($n, $p, $ID, $o)
 	<input class=\"float-right text-right\" type=\"number\" name=\"".$ID."\" style=\"width:40px;\" value=\"0\" min=\"0\" max=\"99\" step=\"1\">
 	</td></tr>
 	<tr><td colspan=\"3\">
-	<textarea style=\"width:600px; height:200px\">".$o."</textarea>
+	<textarea rows=\"5\" style=\"width:600px;\">".$o."</textarea>
+	</td></tr></span></table>";
+	
+	return $text;
+}
+
+Function ArrayNaarDataProducten2($x)
+{
+	$q = "";
+	
+		for($y=0; $y< sizeof($x[0]); $y++)
+	{
+		$n = $x[1][$y];
+		$p = $x[2][$y];
+		$ID = $x[0][$y];
+		$o = $x[3][$y];
+		$a = $x[4][$y];
+		$q .= ProductOverzicht2($n, $p, $ID, $o, $a);
+		
+	}//}
+	
+	return $q;
+}
+
+Function ArrayNaarPrijs($x, $ID)
+{
+		for($y=0; $y< sizeof($x[0]); $y++)
+	{
+		if($x[0][$y]==$ID){
+			return $x[2][$y];
+		}
+		
+	}
+}
+
+Function ProductOverzicht2($n, $p, $ID, $o, $a)
+{
+		$text = "
+	<table class=\"shadow mx-auto mt-5\" style=\"border:1px solid;\">
+	<span border=\"1\">
+	<tr>
+	<td>".$n."</td><td style=\"width:100px;\">
+	<div class=\"float-right text-right\">€".$p."</div></td>
+	<td class=\"text-right\" style=\"width:120px;\">Aantal:
+	<input class=\"float-right text-right\" type=\"number\" name=\"".$ID."\" style=\"width:40px;\" value=\"".$a."\" min=\"0\" max=\"99\" step=\"1\" >
+	</td></tr>
+	<tr><td colspan=\"3\">
+	<textarea rows=\"5\" style=\"width:600px;\">".$o."</textarea>
 	</td></tr></span></table>";
 	
 	return $text;
