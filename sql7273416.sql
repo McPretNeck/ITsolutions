@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 24, 2019 at 09:39 AM
+-- Generation Time: Jan 26, 2019 at 03:58 PM
 -- Server version: 10.1.35-MariaDB
 -- PHP Version: 7.2.9
 
@@ -48,6 +48,30 @@ CREATE TABLE `bestelling` (
   `Reden` text COLLATE utf8_bin NOT NULL,
   `Opmerking` text COLLATE utf8_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Dumping data for table `bestelling`
+--
+
+INSERT INTO `bestelling` (`BestellingID`, `ProductID`, `GebruikerID`, `Status`, `Reden`, `Opmerking`) VALUES
+(1, 0, 1, 'Nieuw', 'omdat het kan', ''),
+(2, 0, 1, 'Nieuw', 'omdat het kan', ''),
+(3, 0, 1, 'Nieuw', 'omdat het kan', ''),
+(4, 0, 1, 'Nieuw', 'o', ''),
+(5, 0, 1, 'Nieuw', 'o', ''),
+(6, 0, 1, 'Nieuw', '', ''),
+(7, 0, 1, 'Nieuw', '', ''),
+(8, 0, 1, 'Nieuw', '', ''),
+(9, 0, 1, 'Nieuw', '', ''),
+(10, 0, 1, 'Nieuw', '', ''),
+(11, 0, 1, 'Nieuw', '', ''),
+(12, 0, 1, 'Nieuw', '', ''),
+(13, 0, 1, 'Nieuw', '', ''),
+(14, 0, 1, 'Nieuw', 'odhk', ''),
+(15, 0, 1, 'Nieuw', 'odhk', ''),
+(16, 0, 1, 'Nieuw', 'odhk', ''),
+(17, 0, 1, 'Nieuw', 'odhk', ''),
+(18, 0, 1, 'Nieuw', '', '');
 
 -- --------------------------------------------------------
 
@@ -113,7 +137,6 @@ CREATE TABLE `leveranciers` (
 --
 
 INSERT INTO `leveranciers` (`LeverancierID`, `Naam`, `Huisnummer`, `PostCode`, `Land`, `Straatnaam`, `Telefoon`, `email`, `toevoeging`) VALUES
-(7, 'Robert', 28, '9711RC', 'Nederland', 'Schuitendiep', 624320122, 'r.e.heeren@st.hanze.nl', '1'),
 (10, 'Bol.com', 96, '3528BJ', 'Nederland', 'Papendorpseweg', 303104999, 'info@bol.com', ''),
 (11, 'Staples Groningen', 11, '9723JA', 'Nederland', 'Kieler Bocht', 503110505, 'klantenservice@officecentre.nl', '');
 
@@ -135,6 +158,30 @@ CREATE TABLE `msg` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `pm`
+--
+
+CREATE TABLE `pm` (
+  `id` int(11) NOT NULL,
+  `van` int(11) NOT NULL,
+  `naar` int(11) NOT NULL,
+  `status` varchar(2) CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL,
+  `admin` varchar(2) CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL,
+  `onderwerp` varchar(255) CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL,
+  `tijd` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `bericht` text CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Dumping data for table `pm`
+--
+
+INSERT INTO `pm` (`id`, `van`, `naar`, `status`, `admin`, `onderwerp`, `tijd`, `bericht`) VALUES
+(1, 1, 2, '0', 'me', 'odhk', '0000-00-00 00:00:00', 'Hoi!');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `producten`
 --
 
@@ -152,8 +199,6 @@ CREATE TABLE `producten` (
 --
 
 INSERT INTO `producten` (`ProductID`, `Naam`, `Prijs`, `Omschrijving`, `Img`, `LeveranciersID`) VALUES
-(1, 'Robert', 69, 'Moi!', '', 10),
-(2, 'Robert', 666, 'moi!', '', 7),
 (5, 'Double A Papier - A4-papier / ', 27, 'Haarscherp printen en kopiÃ«ren. Hagelwit papier. Tweezijdig te gebruiken. Storingsvrij. Verlengt de levensduur van het kopieerapparaat. Kwaliteit wordt gegarandeerd door een ultramodern productieproces. Voldoet aan de houdbaarheidsnorm ISO9706. Dit papier heeft een witheid van CIE160. 5 PAKKEN VAN 500 VEL', '', 10),
 (7, 'Double A Papier - A4-papier / ', 27, 'Haarscherp printen en kopiÃ«ren. Hagelwit papier. Tweezijdig te gebruiken. Storingsvrij. Verlengt de levensduur van het kopieerapparaat. Kwaliteit wordt gegarandeerd door een ultramodern productieproces. Voldoet aan de houdbaarheidsnorm ISO9706. Dit papier heeft een witheid van CIE160. 5 PAKKEN VAN 500 VEL', '', 10),
 (8, 'Double A Papier - A4-papier / ', 27, 'Haarscherp printen en kopiÃ«ren. Hagelwit papier. Tweezijdig te gebruiken. Storingsvrij. Verlengt de levensduur van het kopieerapparaat. Kwaliteit wordt gegarandeerd door een ultramodern productieproces. Voldoet aan de houdbaarheidsnorm ISO9706. Dit papier heeft een witheid van CIE160. 5 PAKKEN VAN 500 VEL', '', 10),
@@ -171,6 +216,28 @@ CREATE TABLE `productenbesteld` (
   `ProductID` int(11) NOT NULL,
   `Aantal` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Dumping data for table `productenbesteld`
+--
+
+INSERT INTO `productenbesteld` (`BestellingID`, `ProductID`, `Aantal`) VALUES
+(1, 5, 1),
+(1, 7, 1),
+(1, 8, 3),
+(4, 5, 2),
+(4, 7, 1),
+(6, 5, 1),
+(6, 7, 1),
+(7, 5, 1),
+(9, 5, 25),
+(10, 5, 1),
+(14, 5, 1),
+(14, 7, 1),
+(14, 8, 1),
+(16, 5, 2),
+(17, 5, 1),
+(18, 5, 1);
 
 --
 -- Indexes for dumped tables
@@ -221,6 +288,12 @@ ALTER TABLE `msg`
   ADD KEY `To` (`To`);
 
 --
+-- Indexes for table `pm`
+--
+ALTER TABLE `pm`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `producten`
 --
 ALTER TABLE `producten`
@@ -242,7 +315,7 @@ ALTER TABLE `productenbesteld`
 -- AUTO_INCREMENT for table `bestelling`
 --
 ALTER TABLE `bestelling`
-  MODIFY `BestellingID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `BestellingID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `factuur`
@@ -267,6 +340,12 @@ ALTER TABLE `leveranciers`
 --
 ALTER TABLE `msg`
   MODIFY `MsgID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `pm`
+--
+ALTER TABLE `pm`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `producten`
