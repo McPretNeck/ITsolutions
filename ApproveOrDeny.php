@@ -19,7 +19,7 @@ include 'db.php';
 	$p = $row['Status'];
 	$o = $row['Opmerking'];
 	
-	$text = "
+	$text .= "
 	<form method=post action=ApproveOrDeny.php>
 	<table class=\"shadow mx-auto mt-3\" style=\"border:1px solid;\">
 	<span border=\"1\">
