@@ -2,6 +2,8 @@
  include("db.php");
 include("menu.php");
 ?>
+		<div class="container mt-2 px-5">
+		<div class="px-5 mx-auto">
         <h2>Personal Message: New Message</h2><br/>
         <a href="pm_inbox.php">Inbox </a><a href="pm_archief.php"> Archief </a><a href="pm_send.php"><b>Nieuw bericht</b></a><br /><br />
                 <table border="1">
@@ -16,14 +18,12 @@ $userid = $_SESSION['ID'] ;
 <select name="naar">
 <?php
 $id = $_SESSION['ID'];
-$user_SQL="SELECT id,naam,voornaam,achternaam FROM gebruikers ORDER BY voornaam ASC";
-$user_result=mysql_query($user_SQL);
-while($users=mysql_fetch_array($user_result)){
+$user_SQL="SELECT idGebruiker as 'id', Naam FROM gebruiker ORDER BY naam ASC;";
+$user_result=mysqli_query($db, $user_SQL);
+while($users=mysqli_fetch_array($user_result)){
 $id = $users['id'];
-$vn = $users['voornaam'];
-$an = $users['achternaam'];
-$un = $users['naam'];
-?><option value="<?php echo $id ;?>"><?php echo "$vn $an ( $un)"; ?></option>
+$un = $users['Naam'];
+?><option value="<?php echo $id ;?>"><?php echo "$un"; ?></option>
 <?php
 }
 ?>
@@ -45,3 +45,5 @@ else{ ?>
 <br />
 <input type="submit" value="verstuur"  name="actie" />
 </form>
+</div>
+</div>

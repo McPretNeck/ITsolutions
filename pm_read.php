@@ -12,9 +12,9 @@ $id = $_GET['id'];
 //de user zijn eigen berichten laten ophalen
 $pm_SQL="SELECT id,naar,van,admin,status,onderwerp,bericht,tijd FROM pm WHERE naar=$userid AND id=$id";
 //nu de SQL opdracht verwerken
-$pm_result=mysql_query($pm_SQL);
+$pm_result=mysqli_query($db, $pm_SQL);
 // een berichten  weergeven
-$pm=mysql_fetch_array($pm_result);
+$pm=mysqli_fetch_array($pm_result);
 //variabelen netjes
 $id = $pm['id'];
 $onderwerp = $pm['onderwerp'];
@@ -27,8 +27,8 @@ $status = $pm['status'];
 $id_van = $pm['van'];
 //even de van id naar naam omzetten
 $van_SQL="SELECT voornaam,achternaam,naam FROM gebruikers WHERE id=$id_van ";
-$van_result=mysql_query($van_SQL);
-$vanvar=mysql_fetch_array($van_result);
+$van_result=mysqli_query($db, $van_SQL);
+$vanvar=mysqli_fetch_array($van_result);
 $vn = $vanvar['voornaam'];
 $an = $vanvar['achternaam'];
 $un = $vanvar['naam'];
@@ -37,8 +37,8 @@ $un = $vanvar['naam'];
 $id_naar = $pm['naar'];
 //even de naar id naar naam omzetten
 $nvan_SQL="SELECT voornaam,achternaam,naam FROM gebruikers WHERE id=$id_naar  ";
-$nvan_result=mysql_query($nvan_SQL);
-$nvanvar=mysql_fetch_array($nvan_result);
+$nvan_result=mysqli_query($db, $nvan_SQL);
+$nvanvar=mysqli_fetch_array($nvan_result);
 $nvn = $nvanvar['voornaam'];
 $nan = $nvanvar['achternaam'];
 $nun = $nvanvar['naam'];

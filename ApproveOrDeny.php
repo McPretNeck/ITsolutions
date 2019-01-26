@@ -4,7 +4,7 @@ include 'db.php';
 
 //functie voor het verkrijgen van alle producten
 	//moet nog een manier komen om de bestellings id in de query te plaatsen
-	$query = "SELECT `bestelling`.`BestellingID`, `producten`.`ProductID` as 'ID', `bestelling`.`GebruikerID`, `bestelling`.`Status`, `bestelling`.`Reden`, `bestelling`.`Opmerking`, `producten`.`Naam`, `producten`.`Prijs` FROM `bestelling` JOIN `productenbesteld` on `bestelling`.`BestellingID` = `productenbesteld`.`BestellingID` JOIN `producten` on `productenbesteld`.`ProductID` = `producten`.`ProductID` where `bestelling`.`BestellingID`= 9;";
+	$query = "SELECT `bestelling`.`BestellingID`, `producten`.`ProductID` as 'ID', `bestelling`.`GebruikerID`, `bestelling`.`Status`, `bestelling`.`Reden`, `bestelling`.`Opmerking`, `producten`.`Naam`, `producten`.`Prijs` FROM `bestelling` JOIN `productenbesteld` on `bestelling`.`BestellingID` = `productenbesteld`.`BestellingID` JOIN `producten` on `productenbesteld`.`ProductID` = `producten`.`ProductID` where `bestelling`.`BestellingID`= 1;";
 	$result = mysqli_query($db, $query);
 	$text ="";
 	

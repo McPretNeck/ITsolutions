@@ -1,8 +1,10 @@
 <?php
 include("db.php");
 include("menu.php");
-?><div class="container mt-2">
- <h2>Personal Message: inbox</h2><br/>
+?>
+		<div class="container mt-2 px-5">
+		<div class="px-5 mx-auto">
+		<h2>Personal Message: inbox</h2><br/>
         <a href="pm_inbox.php"><b>Inbox </b></a><a href="pm_archief.php"> Archief </a><a href="pm_send.php">Nieuw bericht</a>
 <br /><br />
                 <table border="1">
@@ -14,7 +16,7 @@ $userid = $_SESSION['ID'] ;
 $status ="0";
 //de user zijn eigen berichten laten ophalen en  zorg dat alleen de nieuwe berichten worden weergeven
 //$pm_SQL="SELECT id,naar,van,admin,status,onderwerp,bericht,tijd FROM pm WHERE naar='$userid' AND status='$status' ORDER BY tijd";
-$pm_SQL="SELECT `id`,`naar`,`van`,`admin`,`status`,`onderwerp`,`bericht`,`tijd` FROM pm WHERE naar=2 AND status=0 ORDER BY tijd";
+$pm_SQL="SELECT `id`,`naar`,`van`,`admin`,`status`,`onderwerp`,`bericht`,`tijd` FROM pm WHERE naar='$userid' AND status='$status' ORDER BY tijd";
 //nu de SQL opdracht verwerken
 $pm_result=mysqli_query($db, $pm_SQL);
 // een while lus op alle berichten te weergeven
@@ -55,4 +57,5 @@ echo $onderwerp;
 //einde while lus
 }
 ?>
+</div>
 </div>

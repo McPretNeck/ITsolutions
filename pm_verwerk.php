@@ -16,9 +16,9 @@ $bericht = $_POST['berichtl'];
 $tijd=date("Y-m-d H:i:s");
 // enter is enter
 $bericht=nl2br($bericht);
-$bericht=eregi_replace("\n","",$bericht);
+//$bericht=eregi_replace("\n","",$bericht);
 $PM_insert_SQL="INSERT INTO pm (van,naar,status,admin,onderwerp,tijd,bericht) VALUES ('$van','$naar','$status','$admin', '$onderwerp','$tijd','$bericht')";
-$bool=mysql_query($PM_insert_SQL);
+$bool=mysqli_query($db, $PM_insert_SQL);
 if($bool==1){
 ?>
         <h2>Personal Message: Sending succesful</h2>
@@ -40,7 +40,7 @@ $id = $_GET['id'];
 $naar = $_SESSION['ID'];
 //deleten
 $PM_delete_SQL="DELETE FROM pm WHERE id=$id AND naar=$naar";
-$bool=mysql_query($PM_delete_SQL);
+$bool=mysqli_query($db, $PM_delete_SQL);
 if($bool==1){
 ?>
         <h2>Personal Message: Deleting succesful</h2>
@@ -62,7 +62,7 @@ $naar = $_SESSION['ID'];
 $status = "1";
 //archieveren
 $PM_a_SQL="UPDATE pm SET status=$status WHERE id=$id AND naar=$naar";
-$bool=mysql_query($PM_a_SQL);
+$bool=mysqli_query($db, $PM_a_SQL);
 if($bool==1){
 ?>
         <h2>Personal Message: Archievering succesful</h2>
