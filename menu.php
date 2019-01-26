@@ -123,6 +123,7 @@ if(isset($_POST['Logoff2'])){$userID = $_SESSION['ID'];session_unset(); session_
 					<div class="dropdown-menu">
 						<a class="dropdown-item" href="Product_toevoegen.php">Nieuw product</a>
 						<a class="dropdown-item" href="Leverancier_toevoegen.php">Nieuw leverancier</a>
+						<a class="dropdown-item" href="AankoopVerzoek.php">Aankoop verzoek indienen</a>
 					</div>
 				</div>
 				<div class="nav-item dropdown">

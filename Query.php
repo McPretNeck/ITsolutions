@@ -17,11 +17,9 @@ function toevoegenBestelling($x, $r)
 	include 'db.php';
 	$ID= 0;
 	$query = "INSERT INTO `sql7273416`.`bestelling` (`GebruikerID`, `Status`, `Reden`) VALUES (".$_SESSION["ID"].", 'Nieuw', '".$r."');";
-	echo $query."<br/><br />";
 	$result = mysqli_query($db, $query);
 	
 	$query = "SELECT `BestellingID` AS `ID` FROM `bestelling` ORDER BY ID DESC LIMIT 1";
-	echo $query."<br/><br />";
 	$result = mysqli_query($db, $query);
 	if (mysqli_num_rows($result) > 0) {
 	while($row = mysqli_fetch_assoc($result)) {
@@ -33,9 +31,9 @@ function toevoegenBestelling($x, $r)
 	
 	for($q=0;sizeof($x[0])>$q;$q++){
 	$query = "INSERT INTO `productenbesteld` (`BestellingID`,`ProductID`,`Aantal`) VALUES(".$ID.", ".$x[0][$q].", ".$x[1][$q].");";
-	echo $query."<br/><br />";
 	$result = mysqli_query($db, $query);
 	}
+	return $ID;
 }
 
 function getLeveransiers()

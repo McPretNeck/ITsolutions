@@ -130,7 +130,7 @@ Function ProductOverzicht2($n, $p, $ID, $o, $a)
 	<td>".$n."</td><td style=\"width:100px;\">
 	<div class=\"float-right text-right\">€".$p."</div></td>
 	<td class=\"text-right\" style=\"width:120px;\">Aantal:
-	<input class=\"float-right text-right\" type=\"number\" name=\"".$ID."\" style=\"width:40px;\" value=\"".$a."\" min=\"0\" max=\"99\" step=\"1\" >
+	<input class=\"float-right text-right\" type=\"number\" name=\"".$ID."\" style=\"width:40px;\" value=\"".$a."\" min=\"0\" max=\"99\" step=\"1\" disabled>
 	</td></tr>
 	<tr><td colspan=\"3\">
 	<textarea rows=\"5\" style=\"width:600px;\">".$o."</textarea>
