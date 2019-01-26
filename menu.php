@@ -81,7 +81,7 @@ if(isset($_POST['Logoff2'])){$userID = $_SESSION['ID'];session_unset(); session_
 					</div>
 				</div>
 				<!--insert mail heren-->
-				<a class="navbar-brand" href="mindex.php"><img src="img/mail-var-outline.svg" alt="Logosvg" style="width: 30px;"></a>
+				<a class="navbar-brand" href="pm_inbox.php"><img src="img/mail-var-outline.svg" alt="Logosvg" style="width: 30px;"></a>
 				<!--knop links-->
 			<button class="navbar-toggler btn-outline-secondary" type="button" 
 					data-toggle="collapse" data-target="#myTogglerNav" 
