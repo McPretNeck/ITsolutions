@@ -1,6 +1,10 @@
 <?php
 include("db.php");
 include("menu.php");
+?>
+		<div class="container mt-2 px-5">
+		<div class="px-5 mx-auto">
+<?php
 //veiligheid boven alles
 $userid = $_SESSION['ID'] ;
 
@@ -84,3 +88,4 @@ De actie is niet aangegeven! Klik op een van de links hierboven!
 <?php
 }
 ?>
+</div></div>

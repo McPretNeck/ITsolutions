@@ -2,6 +2,8 @@
  include("db.php");
 include("menu.php");
 ?>
+		<div class="container mt-2 px-5">
+		<div class="px-5 mx-auto">
         <h2>Personal Message: read message</h2><br/>
 <?php
 // wat is de user id?
@@ -26,22 +28,18 @@ $status = $pm['status'];
 //de afzender
 $id_van = $pm['van'];
 //even de van id naar naam omzetten
-$van_SQL="SELECT voornaam,achternaam,naam FROM gebruikers WHERE id=$id_van ";
+$van_SQL="SELECT `Naam` FROM gebruiker WHERE idGebruiker=$id_van".";";
 $van_result=mysqli_query($db, $van_SQL);
 $vanvar=mysqli_fetch_array($van_result);
-$vn = $vanvar['voornaam'];
-$an = $vanvar['achternaam'];
-$un = $vanvar['naam'];
+$un = $vanvar['Naam'];
 
 //de ontvanger
 $id_naar = $pm['naar'];
 //even de naar id naar naam omzetten
-$nvan_SQL="SELECT voornaam,achternaam,naam FROM gebruikers WHERE id=$id_naar  ";
+$nvan_SQL="SELECT Naam FROM gebruiker WHERE idGebruiker=$id_naar  ";
 $nvan_result=mysqli_query($db, $nvan_SQL);
 $nvanvar=mysqli_fetch_array($nvan_result);
-$nvn = $nvanvar['voornaam'];
-$nan = $nvanvar['achternaam'];
-$nun = $nvanvar['naam'];
+$nun = $nvanvar['Naam'];
 
 //even de tijd parsen
 $tijd = strtotime($pm['tijd']);
@@ -56,8 +54,8 @@ else{ ?>
 //tabel
 ?>
 <table border="1" width="700">
-<tr><td width="30%">Ontvanger:</td><td width="70%"><?php echo "$nvn $nan ($nun)"; ?></td></tr>
-<tr><td width="30%">Afzender:</td><td width="70%"><?php echo "$vn $an ($un)"; ?></td></tr>
+<tr><td width="30%">Ontvanger:</td><td width="70%"><?php echo "$nun"; ?></td></tr>
+<tr><td width="30%">Afzender:</td><td width="70%"><?php echo "$un"; ?></td></tr>
 <tr><td width="30%">Verstuurd op:</td><td width="70%"><?php echo date("j-n-y H:i",$tijd); ?></td></tr>
 <tr><td width="30%">Onderwerp:</td><td width="70%"><?php 
 // admin berichten onderscheiden
@@ -77,3 +75,5 @@ if($status==0){ ?>
 <li><a href="pm_verwerk.php?actie=archief&id=<?php echo $id; ?>">Archiveer</a></li>
 <?php } ?>
 </ul>
+</div>
+</div>
