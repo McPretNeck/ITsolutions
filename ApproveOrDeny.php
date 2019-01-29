@@ -22,19 +22,19 @@ include 'db.php';
 	$text = "
 	<form method=post action=ApproveOrDeny.php>
 	<table class=\"shadow mx-auto mt-2\" style=\"border:1px solid;\">
-	<span border=\"1\">
+	
 	<tr>
-	<td>Bestelling ID : ".$bs." </br>Product ID: ".$ID." </td><td style=\"width:120px;\">
-	<div class=\"float-right text-right\"".$p."</div></td>
-	<td class=\"text-left\" style=\"width:120px;\"></td></tr>
+		<td colspan=\"3\">Bestelling ID : ".$bs." </br>Product ID: ".$ID." </td></tr>
 	<tr><td colspan=\"3\">
-	<textarea style=\"width:600px; height:200px\">Naam product : ".$naam." \nPrijs : ".$prijs." \nStatus : ".$p." \nReden : ".$rd." \nOpmerking : ".$o." 
-	</textarea>
-	<tr><td> <button type=submit name=afwijzen>Afwijzen</button>
-	<td class=\"float-right text-right\" style=\"width:120px;\"><button type=submit name=accepteer>Accepteer</button></td></tr>
-	<tr><td colspan=\"3\">
-	</td></tr></span>
-	</table></form> 
+		<textarea style=\"width:600px; height:200px\">Naam product : ".$naam." \nPrijs : ".$prijs." \nStatus : ".$p." \nReden : ".$rd." \nOpmerking : ".$o." 
+		</textarea>
+		</td>
+	</tr>
+	<tr>
+		<td colspan=\"3\"> <button type=submit name=afwijzen>Afwijzen</button><button class=\"float-right\" type=submit name=accepteer>Accepteer</button></td>
+	</tr>
+	</table>
+	</form> 
 	<br/>
 	<div class=\"mb-5\"></div>";
 	
