@@ -154,7 +154,7 @@ Function SentPM ($naar, $van, $bestellingID, $systeemMsg, $onderwerp, $text)
 	$result = mysqli_query($db, $query);
 }
 
-Function SentPMaankoopverzoek ($bestellingID, $manager, $text)
+Function SentPMaankoopverzoek ($bestellingID, $manager, $text, $naam)
 {
 	
 	$status = "";
@@ -192,6 +192,7 @@ Function SentPMaankoopverzoek ($bestellingID, $manager, $text)
 	
 	}}
 	$onderwerp = "Aankoopverzoek van ".$_SESSION['naam'].": ".$onderwerp;
+	$text = $text . "\n\n<a href=\"ApproveOrDeny.php?ID=".$bestellingID."&naam=".$naam."\">Verwerken</b></a>";
 	SentPM ($ID, $_SESSION['ID'], $bestellingID, FALSE, $onderwerp, $text);
 	
 	$statusBestelling = "Jouw aanvraacht is in behandeling bij uw manager.";

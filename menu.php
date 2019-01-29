@@ -25,6 +25,9 @@ if(isset($_POST['Username'])){
 				$_SESSION["AfdCode"] = $row2["AfdCode"];
 				$_SESSION["email"] = $row2["Email"];
 				$_SESSION["phonenumber"] = $row2["Telefoonnummer"]; 
+				$_SESSION["Afd"] = $row2["AfdCode"]; 
+					
+				
 			}
 			$LogSucses = true;
 			header('Location: mindex.php');

@@ -7,7 +7,7 @@ include("menu.php");
 		<h2>Personal Message: inbox</h2><br/>
         <a href="pm_inbox.php"><b>Inbox </b></a><a href="pm_archief.php"> Archief </a><a href="pm_send.php">Nieuw bericht</a>
 <br /><br />
-                <table border="1">
+                <table class="mb-5" border="1">
 <tr><td width="200">Onderwerp</td><td width="150">Afzender</td><td width="100">Verstuurd op:</td><td width="100">Opties</td></tr>
 <?php
 // wat is de user id?

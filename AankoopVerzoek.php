@@ -3,7 +3,7 @@ include 'menu.php';
 include 'db.php';
 ?>
 <div class="container mt-2">
-	<h1 class="text-center">Product aankoop verzoek</h1>
+<h1 class="text-center">Product aankoop verzoek</h1>
 	<?php
 		include 'Query.php';
 		include 'myFunctions.php';
@@ -26,7 +26,7 @@ include 'db.php';
 						$manager = true;
 					}
 			}
-			SentPMaankoopverzoek($Bestelnummer,$manager,$_POST["Reden"]);
+			SentPMaankoopverzoek($Bestelnummer,$manager,$_POST['Reden'],$_SESSION['naam']);
 			unset($_SESSION["Data"]);
 		}
 		elseif(isset($_POST["submit"])==false){
