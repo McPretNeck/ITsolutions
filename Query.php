@@ -53,6 +53,23 @@ function getLeveransiers()
 	return $x;
 }
 
+function getLeveransiersNaam($ID)
+{
+	include 'db.php';
+	$query = "SELECT `leveranciers`.`Naam` FROM `leveranciers` WHERE `leveranciers`.`leverancierID` = ".$ID." ORDER BY `leveranciers`.`Naam` ASC LIMIT 1";
+	$result = mysqli_query($db, $query);
+	$x=array();
+	
+	if (mysqli_num_rows($result) > 0) {
+	while($row = mysqli_fetch_assoc($result)) {
+		
+	$x,$row["Naam"];
+	
+	}}
+		
+	return $x;
+}
+
 function getProductens()
 {
 	include 'db.php';
