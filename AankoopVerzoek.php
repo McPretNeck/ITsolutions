@@ -15,8 +15,19 @@ include 'db.php';
 			$Bestelnummer = toevoegenBestelling($x,$_POST["Reden"]);
 			
 			echo "<div class=\"px-5 mx-auto text-left\" style=\"width:65%;\"><p>Beste, ".$_SESSION["naam"]."</p><p>Uw bestelling ".$Bestelnummer." is aan gemaakt en zal zo snel mogelijk verwerkt worden.</p><br/><p>Vriendelijke groet,</p><p>IT aankoop team</p>";
-			unset($_SESSION["Data"]);
+			
 			//Hier code plaatsen om een bericht te versturen
+			$manager = false;
+			
+			for($y=0; $y< sizeof($_SESSION["Data"][0]); $y++)
+			{
+				
+					if(ArrayNaarPrijs(getProductens(),intval($_SESSION["Data"][0][$y]))>500){
+						$manager = true;
+					}
+			}
+			SentPMaankoopverzoek($Bestelnummer,$manager,$_POST["Reden"]);
+			unset($_SESSION["Data"]);
 		}
 		elseif(isset($_POST["submit"])==false){
 			?><form class="mb-5" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST"><?php
@@ -39,7 +50,6 @@ include 'db.php';
 			{
 				if($_POST[$_SESSION["Data"][0][$y]]>0)
 				{
-					//echo "Het product ". $_SESSION["Data"][0][$y] ." is ". $_POST[$_SESSION["Data"][0][$y]] ." keer besteld!<br/>";
 					$totaalPrijs = $totaalPrijs + ArrayNaarPrijs(getProductens(),intval($_SESSION["Data"][0][$y]));
 					ArrayNaarArray(getProductensByID(intval($_SESSION["Data"][0][$y]),intval($_POST[$_SESSION["Data"][0][$y]])));
 					

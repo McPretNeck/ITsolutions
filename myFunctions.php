@@ -139,5 +139,64 @@ Function ProductOverzicht2($n, $p, $ID, $o, $a)
 	return $text;
 }
 
+Function SentPM ($naar, $van, $bestellingID, $systeemMsg, $onderwerp, $text)
+{
+	$status ="0";
+	$sChack = $systeemMsg;
+	if($sChack == true)
+	{
+		$onderwerp = "SYSTEEM: ".$onderwerp;
+	}
+	include'db.php';
+	$tijd=date("Y-m-d H:i:s");
+	$query = "INSERT INTO pm (naar,van,status,OrderID,onderwerp,tijd,bericht) VALUES (".$naar.", ".$van.", '".$status."', ".$bestellingID.", '".$onderwerp."', '".$tijd."', '".$text."');";
+	echo $query;
+	$result = mysqli_query($db, $query);
+}
 
+Function SentPMaankoopverzoek ($bestellingID, $manager, $text)
+{
+	
+	$status = "";
+	$onderwerp = "";
+	if($manager == false){
+		include 'db.php';
+		$ID = 0;
+		$query = "SELECT `idGebruiker` AS 'ID' FROM `gebruiker` WHERE `AfdCode` IN (SELECT `AfdCode` FROM `gebruiker` WHERE `idGebruiker` = ".$_SESSION['ID'].") AND `Rol` = 3 LIMIT 1;";
+		$result = mysqli_query($db, $query);
+		if (mysqli_num_rows($result) > 0) {
+			while($row = mysqli_fetch_assoc($result)) {
+				
+				$ID = $row["ID"];
+	
+	}}
+	$onderwerp = "Aankoopverzoek van ".$_SESSION['naam'];
+	SentPM ($ID, $_SESSION['ID'], $bestellingID, FALSE, $onderwerp, $text);
+	
+	$statusBestelling = "Jouw aanvraacht is in behandeling.(buyer)";
+	$query = "UPDATE `bestelling` SET `Status` = '".$statusBestelling."' WHERE `BestellingID` = ".$bestellingID."";
+	$result = mysqli_query($db, $query);
+	}
+	elseif($manager == true)
+	{
+	include 'db.php';
+	$ID = 0;
+	$query = "SELECT `AfdManager` AS 'ID' FROM `afdelingen` WHERE `AfdCode` IN (SELECT `AfdCode` FROM `gebruiker` WHERE `idGebruiker` = ".$_SESSION['ID'].") LIMIT 1;";
+	//print_r($query."<br/>");
+	//print_r($db."<br/>");
+	$result = mysqli_query($db, $query);
+	if (mysqli_num_rows($result) > 0) {
+	while($row = mysqli_fetch_assoc($result)) {
+		
+	$ID = $row["ID"];
+	
+	}}
+	$onderwerp = "Aankoopverzoek van ".$_SESSION['naam'].": ".$onderwerp;
+	SentPM ($ID, $_SESSION['ID'], $bestellingID, FALSE, $onderwerp, $text);
+	
+	$statusBestelling = "Jouw aanvraacht is in behandeling bij uw manager.";
+	$query = "UPDATE `bestelling` SET `Status` = '".$statusBestelling."' WHERE `BestellingID` = ".$bestellingID."";
+	$result = mysqli_query($db, $query);
+	}
+}
 ?>
