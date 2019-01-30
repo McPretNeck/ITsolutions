@@ -50,6 +50,14 @@ include 'myFunctions.php';
 		echo "De gegevens hierboven worden afgewezen</br>";
 		echo "</p>";
 		//code bericht
+		$query = "SELECT `GebruikerID` AS 'BID' FROM `sql7273416`.`bestelling` WHERE `BestellingID` = ".$bs.";";
+		$result = mysqli_query($db,$query);
+		while($row = mysqli_fetch_assoc($result)){
+			$ontvanger = $row['BID'];
+		}
+		$onderwerp = "Bestelling van ".$_GET['naam'];
+		$text = $rd. "\n \n \n Deze bestelling is afgekeurd:".$_SESSION['naam'];
+		SentPM($ontvanger, $_SESSION['ID'], $bs, FALSE, $onderwerp, $text);
 	}
 	}
 

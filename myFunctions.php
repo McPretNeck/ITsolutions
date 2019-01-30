@@ -154,6 +154,21 @@ Function SentPM ($naar, $van, $bestellingID, $systeemMsg, $onderwerp, $text)
 	$result = mysqli_query($db, $query);
 }
 
+Function SentPMnP ($naar, $van, $systeemMsg, $onderwerp, $text)
+{
+	$status ="0";
+	$sChack = $systeemMsg;
+	if($sChack == true)
+	{
+		$onderwerp = "SYSTEEM: ".$onderwerp;
+	}
+	include'db.php';
+	$tijd=date("Y-m-d H:i:s");
+	$query = "INSERT INTO pm (naar,van,status,onderwerp,tijd,bericht) VALUES (".$naar.", ".$van.", '".$status."', '".$onderwerp."', '".$tijd."', '".$text."');";
+	echo $query;
+	$result = mysqli_query($db, $query);
+}
+
 Function SentPMaankoopverzoek ($bestellingID, $manager, $text, $naam)
 {
 	

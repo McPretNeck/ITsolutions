@@ -151,8 +151,7 @@ include 'db.php';
 			
 			<tr>
 				<td colspan="2">	
-					<textarea name="message" id="message" style="width:300px; height:200px">
-					</textarea>
+					<textarea name="message" id="message" style="width:300px; height:200px"></textarea>
 				</td>
 			</tr>
 			
