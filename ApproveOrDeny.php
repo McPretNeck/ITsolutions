@@ -56,7 +56,7 @@ include 'myFunctions.php';
 			$ontvanger = $row['BID'];
 		}
 		$onderwerp = "Bestelling van ".$_GET['naam'];
-		$text = $rd. "\n \n \n Deze bestelling is afgekeurd:".$_SESSION['naam'];
+		$text = $rd. "<br/>Deze bestelling is afgekeurd:".$_SESSION['naam'];
 		SentPM($ontvanger, $_SESSION['ID'], $bs, FALSE, $onderwerp, $text);
 	}
 	}
@@ -75,7 +75,7 @@ include 'myFunctions.php';
 		$ontvanger = $row['AID'];
 		}
 		$onderwerp = "Nieuwe bestelling van ".$_GET['naam'];
-		$text = $rd."\n \n \n Deze bestelling is goed gekeurd door de manager:".$_SESSION['naam'];
+		$text = $rd."<br/>Deze bestelling is goed gekeurd door de manager:".$_SESSION['naam']."<br/><a href=\"Logistiek.php?ID=".$bestellingID."\">Bestellen</b>";
 		SentPM($ontvanger, $_SESSION['ID'], $bs, FALSE, $onderwerp, $text);
 	}
 		

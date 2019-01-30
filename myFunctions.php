@@ -207,7 +207,7 @@ Function SentPMaankoopverzoek ($bestellingID, $manager, $text, $naam)
 	
 	}}
 	$onderwerp = "Aankoopverzoek van ".$_SESSION['naam'].": ".$onderwerp;
-	$text = $text . "\n\n<a href=\"ApproveOrDeny.php?ID=".$bestellingID."&naam=".$naam."\">Verwerken</b></a>";
+	$text = $text . "<br/><br/><a href=\"ApproveOrDeny.php?ID=".$bestellingID."&naam=".$naam."\">Bestel aanvraag verwerken.</b></a>";
 	SentPM ($ID, $_SESSION['ID'], $bestellingID, FALSE, $onderwerp, $text);
 	
 	$statusBestelling = "Jouw aanvraacht is in behandeling bij uw manager.";

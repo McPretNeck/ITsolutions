@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 29, 2019 at 01:46 PM
--- Server version: 10.1.36-MariaDB
--- PHP Version: 7.2.11
+-- Generation Time: Jan 30, 2019 at 11:18 AM
+-- Server version: 10.1.35-MariaDB
+-- PHP Version: 7.2.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -33,18 +33,18 @@ USE `sql7273416`;
 CREATE TABLE `afdelingen` (
   `AfdCode` varchar(3) COLLATE utf8_bin NOT NULL,
   `AfdNaam` varchar(20) COLLATE utf8_bin NOT NULL,
-  `AfdManager` int(11) NOT NULL,
-  `AfdBuyer` int(30) NOT NULL
+  `AfdManager` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Dumping data for table `afdelingen`
 --
 
-INSERT INTO `afdelingen` (`AfdCode`, `AfdNaam`, `AfdManager`, `AfdBuyer`) VALUES
-('Fic', 'Financien', 2, 0),
-('ICT', 'ICT', 1, 0),
-('Log', 'Logistiek', 6, 0);
+INSERT INTO `afdelingen` (`AfdCode`, `AfdNaam`, `AfdManager`) VALUES
+('Fic', 'Financien', 2),
+('ICT', 'ICT', 1),
+('Log', 'Logistiek', 6),
+('Pur', 'Purchassing', 14);
 
 -- --------------------------------------------------------
 
@@ -116,7 +116,11 @@ INSERT INTO `bestelling` (`BestellingID`, `GebruikerID`, `Status`, `Reden`, `Opm
 (49, 8, 'Jouw aanvraacht is in behandel', '1', NULL),
 (50, 8, 'Jouw aanvraacht is in behandel', 'jnvksjdn', NULL),
 (51, 8, 'Jouw aanvraacht is in behandel', 'ssss', NULL),
-(52, 8, 'Jouw aanvraacht is in behandel', 'ssss', NULL);
+(52, 8, 'Jouw aanvraacht is in behandel', 'ssss', NULL),
+(53, 8, 'Denied', 'omdat ik met klanten moet bellen he!', NULL),
+(54, 8, 'Jouw aanvraacht is in behandel', 'test!', NULL),
+(55, 11, 'Jouw aanvraacht is in behandel', 'Hooi!', NULL),
+(56, 11, 'Accepted', 'test', NULL);
 
 -- --------------------------------------------------------
 
@@ -159,7 +163,8 @@ INSERT INTO `gebruiker` (`idGebruiker`, `AfdCode`, `Naam`, `Wachtwoord`, `Rol`, 
 (10, 'ICT', 'Presentatie', '1234', 2, 'r.e.heeren@st.hanze.nl', 624320122),
 (11, 'ICT', 'BuyerIT', '1234', 3, 'r.e.heeren@st.hanze.nl', 624320122),
 (12, 'Fic', 'BuyerFic', '1234', 3, 'r.e.heeren@st.hanze.nl', 624320122),
-(13, 'Log', 'BuyerLog', '1234', 3, 'r.e.heeren@st.hanze.nl', 624320122);
+(13, 'Log', 'BuyerLog', '1234', 3, 'r.e.heeren@st.hanze.nl', 624320122),
+(14, 'Pur', 'ManagerPurchassing', '1234', 3, 'r.e.heeren@st.hanze.nl', 624320122);
 
 -- --------------------------------------------------------
 
@@ -176,17 +181,18 @@ CREATE TABLE `leveranciers` (
   `Straatnaam` varchar(50) COLLATE utf8_bin DEFAULT NULL,
   `Telefoon` int(10) NOT NULL,
   `email` varchar(100) COLLATE utf8_bin NOT NULL,
-  `toevoeging` varchar(10) COLLATE utf8_bin DEFAULT NULL
+  `toevoeging` varchar(10) COLLATE utf8_bin DEFAULT NULL,
+  `Act` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Dumping data for table `leveranciers`
 --
 
-INSERT INTO `leveranciers` (`LeverancierID`, `Naam`, `Huisnummer`, `PostCode`, `Land`, `Straatnaam`, `Telefoon`, `email`, `toevoeging`) VALUES
-(7, 'Robert', 28, '9711RC', 'Nederland', 'Schuitendiep', 624320122, 'r.e.heeren@st.hanze.nl', '1'),
-(10, 'Bol.com', 96, '3528BJ', 'Nederland', 'Papendorpseweg', 303104999, 'info@bol.com', ''),
-(11, 'Staples Groningen', 11, '9723JA', 'Nederland', 'Kieler Bocht', 503110505, 'klantenservice@officecentre.nl', '');
+INSERT INTO `leveranciers` (`LeverancierID`, `Naam`, `Huisnummer`, `PostCode`, `Land`, `Straatnaam`, `Telefoon`, `email`, `toevoeging`, `Act`) VALUES
+(7, 'Robert', 28, '9711RC', 'Nederland', 'Schuitendiep', 624320122, 'r.e.heeren@st.hanze.nl', '1', 0),
+(10, 'Bol.com', 96, '3528BJ', 'Nederland', 'Papendorpseweg', 303104999, 'info@bol.com', '', 0),
+(11, 'Staples Groningen', 11, '9723JA', 'Nederland', 'Kieler Bocht', 503110505, 'klantenservice@officecentre.nl', '', 0);
 
 -- --------------------------------------------------------
 
@@ -199,7 +205,7 @@ CREATE TABLE `pm` (
   `van` int(11) NOT NULL,
   `naar` int(11) NOT NULL,
   `status` varchar(2) CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL,
-  `OrderID` int(11) NOT NULL,
+  `OrderID` int(11) DEFAULT NULL,
   `admin` varchar(2) CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL,
   `onderwerp` varchar(255) CHARACTER SET latin1 COLLATE latin1_general_ci NOT NULL,
   `tijd` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -235,7 +241,13 @@ INSERT INTO `pm` (`id`, `van`, `naar`, `status`, `OrderID`, `admin`, `onderwerp`
 (23, 8, 1, '0', 49, '', 'Aankoopverzoek van Pretzel: ', '2019-01-28 21:13:15', '1'),
 (24, 8, 1, '0', 50, '', 'Aankoopverzoek van Pretzel: ', '2019-01-28 21:14:12', 'jnvksjdn'),
 (25, 8, 11, '0', 51, '', 'Aankoopverzoek van Pretzel', '2019-01-28 21:16:45', 'ssss'),
-(26, 8, 1, '0', 52, '', 'Aankoopverzoek van Pretzel: ', '2019-01-28 21:17:03', 'ssss');
+(26, 8, 1, '0', 52, '', 'Aankoopverzoek van Pretzel: ', '2019-01-28 21:17:03', 'ssss'),
+(27, 8, 1, '0', 53, '', 'Aankoopverzoek van Pretzel: ', '2019-01-30 08:30:12', 'omdat ik met klanten moet bellen he!\n\n<a href=\"ApproveOrDeny.php?ID=53&naam=Pretzel\">Verwerken</b></a>'),
+(28, 1, 8, '0', 53, '', 'Bestelling van Pretzel', '2019-01-30 08:32:32', 'omdat ik met klanten moet bellen he!\n \n \n Deze bestelling is afgekeurd:Admin'),
+(29, 8, 11, '0', 54, '', 'Aankoopverzoek van Pretzel', '2019-01-30 08:33:39', 'test!'),
+(30, 11, 11, '0', 55, '', 'Aankoopverzoek van BuyerIT', '2019-01-30 09:57:21', 'Hooi!'),
+(31, 11, 1, '0', 56, '', 'Aankoopverzoek van BuyerIT: ', '2019-01-30 09:58:21', 'test\n\n<a href=\"ApproveOrDeny.php?ID=56&naam=BuyerIT\">Verwerken</b></a>'),
+(32, 11, 11, '0', 56, '', 'Nieuwe bestelling van BuyerIT', '2019-01-30 09:58:33', 'test<br/>Deze bestelling is goed gekeurd door de manager:BuyerIT');
 
 -- --------------------------------------------------------
 
@@ -248,7 +260,7 @@ CREATE TABLE `producten` (
   `Naam` varchar(30) COLLATE utf8_bin NOT NULL,
   `Prijs` float NOT NULL,
   `Omschrijving` text COLLATE utf8_bin NOT NULL,
-  `Img` varchar(100) COLLATE utf8_bin NOT NULL,
+  `Act` tinyint(1) NOT NULL,
   `LeveranciersID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
@@ -256,10 +268,10 @@ CREATE TABLE `producten` (
 -- Dumping data for table `producten`
 --
 
-INSERT INTO `producten` (`ProductID`, `Naam`, `Prijs`, `Omschrijving`, `Img`, `LeveranciersID`) VALUES
-(10, 'Double A Papier - A4-papier / ', 26.99, 'Haarscherp printen en kopiÃ«ren. Hagelwit papier. Tweezijdig te gebruiken. Storingsvrij. Verlengt de levensduur van het kopieerapparaat. Kwaliteit wordt gegarandeerd door een ultramodern productieproces. Voldoet aan de houdbaarheidsnorm ISO9706. Dit papier heeft een witheid van CIE160. 5 PAKKEN VAN 500 VEL', '', 10),
-(33, 'Apple iPhone X - 64GB - Spaceg', 899.99, 'Productbeschrijving\r\nWil je jouw smartphone voor veel meer gebruiken dan alleen bereikbaarheid? Deze smartphone geeft je de ultieme entertainmentervaring, laat je perfecte foto\'s in alle omstandigheden maken en geeft je super snel toegang tot al jouw apps. Met een dubbele camera aan de achterkant van je smartphone kun je bijvoorbeeld foto\'s met diepte maken of een groter geheel vastleggen. Je kunt deze smartphone opladen via een draadloze oplader, zodat je nooit meer vast zit aan een kabeltje. En met een smartphone die spatwaterdicht is, doet het scherm van je telefoon het nog steeds in een flinke regenbui.\r\n\r\nPlus- en minpunten van de Apple iPhone X\r\nPluspunten Heeft een helder en scherp scherm\r\nPluspunten Heeft dubbele camera waarmee je diepte kunt vastleggen\r\nPluspunten Kan ontgrendeld worden met gezichtsherkenning\r\nMinpunten Is wat zwaarder dan de gemiddelde iPhone.\r\nWil je toch een lichtere iPhone? Dan raden we je de Apple iPhone 8 Plus aan.\r\n\r\nApple iPhone X\r\n\r\nWat maakt de Apple iPhone X bijzonder?\r\nHet prachtige scherm van de iPhone X volgt de rondingen van het design, waarmee deze smartphone een lust voor het oog is. De TrueDepth-frontcamera maakt (3D) Face ID mogelijk: geavanceerde gezichtsherkenning om snel, makkelijk en intuÃ¯tief te ontgrendelen. Mooie fotoâ€™s maak je gemakkelijk door de dubbele camera, beeldstabilisatie en instellingen voor verschillende belichtingseffecten. \r\n\r\nApple iPhone X\r\n\r\nOnze specialist adviseert deze smartphone voor:\r\nVink Sociale Media: gebruik Social Media apps, zelfs tegelijk.\r\nVink Entertainment: de ultieme entertainment-ervaring; van films & series tot games!\r\nVink Dagelijks gebruik: altijd bereikbaar en super snel internet.\r\nVink Fotografie: fotografeer op een professioneel niveau.', '', 10),
-(34, 'Double A Papier - A4-papier / ', 89.99, 'printer papier', '', 11);
+INSERT INTO `producten` (`ProductID`, `Naam`, `Prijs`, `Omschrijving`, `Act`, `LeveranciersID`) VALUES
+(10, 'Double A Papier - A4-papier / ', 26.99, 'Haarscherp printen en kopiÃ«ren. Hagelwit papier. Tweezijdig te gebruiken. Storingsvrij. Verlengt de levensduur van het kopieerapparaat. Kwaliteit wordt gegarandeerd door een ultramodern productieproces. Voldoet aan de houdbaarheidsnorm ISO9706. Dit papier heeft een witheid van CIE160. 5 PAKKEN VAN 500 VEL', 0, 10),
+(33, 'Apple iPhone X - 64GB - Spaceg', 899.99, 'Productbeschrijving\r\nWil je jouw smartphone voor veel meer gebruiken dan alleen bereikbaarheid? Deze smartphone geeft je de ultieme entertainmentervaring, laat je perfecte foto\'s in alle omstandigheden maken en geeft je super snel toegang tot al jouw apps. Met een dubbele camera aan de achterkant van je smartphone kun je bijvoorbeeld foto\'s met diepte maken of een groter geheel vastleggen. Je kunt deze smartphone opladen via een draadloze oplader, zodat je nooit meer vast zit aan een kabeltje. En met een smartphone die spatwaterdicht is, doet het scherm van je telefoon het nog steeds in een flinke regenbui.\r\n\r\nPlus- en minpunten van de Apple iPhone X\r\nPluspunten Heeft een helder en scherp scherm\r\nPluspunten Heeft dubbele camera waarmee je diepte kunt vastleggen\r\nPluspunten Kan ontgrendeld worden met gezichtsherkenning\r\nMinpunten Is wat zwaarder dan de gemiddelde iPhone.\r\nWil je toch een lichtere iPhone? Dan raden we je de Apple iPhone 8 Plus aan.\r\n\r\nApple iPhone X\r\n\r\nWat maakt de Apple iPhone X bijzonder?\r\nHet prachtige scherm van de iPhone X volgt de rondingen van het design, waarmee deze smartphone een lust voor het oog is. De TrueDepth-frontcamera maakt (3D) Face ID mogelijk: geavanceerde gezichtsherkenning om snel, makkelijk en intuÃ¯tief te ontgrendelen. Mooie fotoâ€™s maak je gemakkelijk door de dubbele camera, beeldstabilisatie en instellingen voor verschillende belichtingseffecten. \r\n\r\nApple iPhone X\r\n\r\nOnze specialist adviseert deze smartphone voor:\r\nVink Sociale Media: gebruik Social Media apps, zelfs tegelijk.\r\nVink Entertainment: de ultieme entertainment-ervaring; van films & series tot games!\r\nVink Dagelijks gebruik: altijd bereikbaar en super snel internet.\r\nVink Fotografie: fotografeer op een professioneel niveau.', 0, 10),
+(34, 'Double A Papier - A4-papier / ', 89.99, 'printer papier', 0, 11);
 
 -- --------------------------------------------------------
 
@@ -314,7 +326,11 @@ INSERT INTO `productenbesteld` (`BestellingID`, `ProductID`, `Aantal`) VALUES
 (46, 33, 1),
 (50, 10, 1),
 (51, 10, 1),
-(52, 33, 1);
+(52, 33, 1),
+(53, 33, 1),
+(54, 10, 2),
+(55, 10, 2),
+(56, 33, 1);
 
 --
 -- Indexes for dumped tables
@@ -325,8 +341,7 @@ INSERT INTO `productenbesteld` (`BestellingID`, `ProductID`, `Aantal`) VALUES
 --
 ALTER TABLE `afdelingen`
   ADD PRIMARY KEY (`AfdCode`),
-  ADD KEY `fchfcg` (`AfdManager`),
-  ADD KEY `AfdBuyer` (`AfdBuyer`);
+  ADD KEY `fchfcg` (`AfdManager`);
 
 --
 -- Indexes for table `bestelling`
@@ -387,7 +402,7 @@ ALTER TABLE `productenbesteld`
 -- AUTO_INCREMENT for table `bestelling`
 --
 ALTER TABLE `bestelling`
-  MODIFY `BestellingID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+  MODIFY `BestellingID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
 
 --
 -- AUTO_INCREMENT for table `factuur`
@@ -399,7 +414,7 @@ ALTER TABLE `factuur`
 -- AUTO_INCREMENT for table `gebruiker`
 --
 ALTER TABLE `gebruiker`
-  MODIFY `idGebruiker` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `idGebruiker` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `leveranciers`
@@ -411,7 +426,7 @@ ALTER TABLE `leveranciers`
 -- AUTO_INCREMENT for table `pm`
 --
 ALTER TABLE `pm`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT for table `producten`
