@@ -1,6 +1,7 @@
 <?php
 	include "menu.php";
 	include "db.php";
+	include	"myFunctions.php"
 	
 ?>
 <div class="container mt-2 mb-5">
@@ -159,25 +160,31 @@ if(isset($_POST['nieuwe_leverancier'])){
 <?php
 }
 elseif(isset($_POST['verstuur'])){
-			$product 		=	$_POST["productnaam"];
-			$prijs 			=	$_POST["productprijs"];
-			if(isset($_POST['leverancier'])){ 	$query = "SELECT `Naam` FROM `leveranciers` WHERE `LeverancierID` = ".$_POST['leverancier'];
-												$result = mysqli_query($db,$query);
-												if (mysqli_num_rows($result) > 0) {
-												while($row = mysqli_fetch_assoc($result)) {
-												$leverancier = $row["Naam"];}}}
-			$omschrijving	=	$_POST["message"];
-			if(isset($_POST['leveranciernaam'])){$lever_nieuw	=	$_POST["leveranciernaam"];}
-			if(isset($_POST['straatnaam'])){$straat				=	$_POST["straatnaam"];}
-			if(isset($_POST['straatnr'])){$straatnr				=	$_POST["straatnr"];}
-			if(isset($_POST['postcode'])){$postcode				=	$_POST["postcode"];}
-			if(isset($_POST['land'])){$land 					=	$_POST["land"];}
-			if(isset($_POST['telnr'])){$telnr					=	$_POST["telnr"];}
-			if(isset($_POST['mail'])){$email					=	$_POST["mail"];}
+	
+	
+			$product 				=	$_POST["productnaam"];
+			$prijs 					=	$_POST["productprijs"];
+			
+			if(isset($_POST['leverancier'])){ 	
+				$query = "SELECT `Naam` FROM `leveranciers` WHERE `LeverancierID` = ".$_POST['leverancier'];
+				$result = mysqli_query($db,$query);
+				if (mysqli_num_rows($result) > 0) {
+					while($row = mysqli_fetch_assoc($result)) {
+					$leverancier = $row["Naam"];}}}
+				else{ 
+					$leverancier = $_POST['leveranciernaam'];}
+					
+			$omschrijving			=	$_POST["message"];
+			if(isset($_POST['straatnaam'])){		$straat					=	$_POST["straatnaam"];}
+			if(isset($_POST['straatnr'])){			$straatnr				=	$_POST["straatnr"];}
+			if(isset($_POST['postcode'])){			$postcode				=	$_POST["postcode"];}
+			if(isset($_POST['land'])){				$land 					=	$_POST["land"];}
+			if(isset($_POST['telnr'])){				$telnr					=	$_POST["telnr"];}
+			if(isset($_POST['mail'])){				$email					=	$_POST["mail"];}
 		
-		echo "<h5 align=\"center\">De volgende gegevens worden verstuurd:</h5>";
+		echo "<h5 align=\"center\">De volgende gegevens worden verstuurd:</h5><form method=\"post\" action=\"".htmlspecialchars($_SERVER["PHP_SELF"])."\">";
 	?>
-	<form>
+			
 	<table align="center">
 	<p align="center"> <?php echo $_SESSION["naam"]; ?> heeft verzocht om het volgende product beschikbaar te maken: </p>
 		<tr>
@@ -190,6 +197,7 @@ elseif(isset($_POST['verstuur'])){
 		</td>
 		<td>
 			<?php echo "$product"; ?>
+			<input type="hidden" value="<?php echo $_POST["productnaam"];?>" id="product" name="product">
 		</td>
 		</tr>
 		
@@ -199,6 +207,7 @@ elseif(isset($_POST['verstuur'])){
 		</td>
 		<td>
 			<?php echo "€$prijs"; ?>
+			<input type="hidden" value="<?php echo $prijs; ?>" name="prijs">
 		</td>
 		</tr>
 		
@@ -208,6 +217,7 @@ elseif(isset($_POST['verstuur'])){
 		</td>
 		<td>
 			<?php echo "$omschrijving"; ?>
+			<input type="hidden" value="<?php echo $omschrijving; ?>" name="omschrijving">
 		</td>
 		</tr>
 		
@@ -216,12 +226,8 @@ elseif(isset($_POST['verstuur'])){
 			Leverancier:
 		</td>
 		<td>
-			<?php
-					if (isset($_POST["leveranciernaam"]))
-					{ echo "$lever_nieuw";}
-					else
-					{ echo "$leverancier";}
-			?>
+			<?php echo "$leverancier"; ?>
+			<input type="hidden" value="<?php echo $leverancier; ?>" name="leverancier">
 		</td>
 		</tr>
 		
@@ -234,9 +240,11 @@ elseif(isset($_POST['verstuur'])){
 		</td>
 		<td>
 			<?php echo "$straat";?>
+			<input type="hidden" value="<?php echo $straat; ?>" name="straat">
 		</td>
 		<td>
 			<?php echo "$straatnr";?>
+			<input type="hidden" value="<?php echo $straatnr; ?>" name="straatnr">
 		</td>
 		</tr>
 		
@@ -246,6 +254,7 @@ elseif(isset($_POST['verstuur'])){
 		</td>
 		<td>
 			<?php echo "$postcode"; ?>
+			<input type="hidden" value="<?php echo $postcode; ?>" name="postcode">
 		</td>
 		</tr>
 		
@@ -255,6 +264,7 @@ elseif(isset($_POST['verstuur'])){
 		</td>
 		<td>
 			<?php echo "$land"; ?>
+			<input type="hidden" value="<?php echo $land; ?>" name="land">
 		</td>
 		</tr>
 		
@@ -264,6 +274,7 @@ elseif(isset($_POST['verstuur'])){
 		</td>
 		<td>
 			<?php echo "$telnr"; ?>
+			<input type="hidden" value="<?php echo $telnr; ?>" name="telnr">
 		</td>
 		</tr>
 		
@@ -273,6 +284,7 @@ elseif(isset($_POST['verstuur'])){
 		</td>
 		<td>
 			<?php echo "$email"; ?>
+			<input type="hidden" value="<?php echo $email; ?>" name="email" ID="email">
 		</td>
 		</tr>
 	
@@ -286,27 +298,73 @@ elseif(isset($_POST['verstuur'])){
 	</table>
 	</form>
 	<?php
+	
 }
-elseif(isset($_POST['definitief']))
-{
-												$product 		=	$_POST["productnaam"];
-													$prijs 			=	$_POST["productprijs"];
-													$omschrijving	=	$_POST["message"];
-			if(isset($_POST['leveranciernaam'])){	$lever_nieuw	=	$_POST["leveranciernaam"];}
-			if(isset($_POST['straatnaam'])){		$straat			=	$_POST["straatnaam"];}
-			if(isset($_POST['straatnr'])){			$straatnr		=	$_POST["straatnr"];}
-			if(isset($_POST['postcode'])){			$postcode		=	$_POST["postcode"];}
-			if(isset($_POST['land'])){				$land 			=	$_POST["land"];}
-			if(isset($_POST['telnr'])){				$telnr			=	$_POST["telnr"];}
-			if(isset($_POST['mail'])){				$email			=	$_POST["mail"];}
+
+elseif(isset($_POST["definitief"])){
+
+	
+	
+			$product 				=	"";
+			$prijs 					=	"";
+			$leverancier			=	"";
+			$omschrijving			=	"";
+			$straat					=	"";
+			$straatnr				=	"";
+			$postcode				=	"";
+			$land 					=	"";
+			$telnr					=	"";
+			$email					=	"";
+			if(isset($_POST['product'])){		$product 				=	$_POST['product'];}
+			if(isset($_POST['prijs'])){			$prijs 					=	$_POST["prijs"];}
+			if(isset($_POST['leverancier'])){	$leverancier			=	$_POST["leverancier"];}
+			if(isset($_POST['omschrijving'])){	$omschrijving			=	$_POST["omschrijving"];}
+			if(isset($_POST['straatnaam'])){	$straat					=	$_POST["straat"];}
+			if(isset($_POST['straatnr'])){		$straatnr				=	$_POST["straatnr"];}
+			if(isset($_POST['postcode'])){		$postcode				=	$_POST["postcode"];}
+			if(isset($_POST['land'])){			$land 					=	$_POST["land"];}
+			if(isset($_POST['telnr'])){			$telnr					=	$_POST["telnr"];}
+			if(isset($_POST['mail'])){			$email					=	$_POST["email"];}
+	
+	
+	$query = "INSERT INTO `sql7273416`.`leveranciers` (`Naam`, `Huisnummer`, `PostCode`, `Land`, `Straatnaam`, `Telefoon`, `email`, `Act`) 
+					VALUES (\"".$leverancier."\",\"".$straatnr."\",\"".$postcode."\,\"".$land."\,\"".$straat."\",\"".$telnr."\,\"".$email."\, FALSE )";
+		$result = mysqli_query($db, $query);
+		
+		$query2 = "SELECT `LeveranciersID` FROM `leveranciers` WHERE `Naam`=".'$leverancier';
+		$result2 = mysqli_query($db, $query2);
+		
+		$query3 = "INSERT INTO `sql7273416`.`producten` (`Naam`, `Prijs`, `Omschrijving`, `Act`, `LeveranciersID`)
+					VALUES (".'$product'.", ".'$prijs'.", ".'$omschrijving'.", FALSE, ".'$result2'.")";
+
+	
 			
-			$text =  $_SESSION['naam']." heeft verzocht om het volgende pruduct toe te voegen:</br>";
-			$text.=  "Productnaam: ".$product."</br>";
-			$text.=  "Prijs: €".$prijs."</br>";
-			$text.=  "Omschrijving: ".$omschrijving."</br>";
-			$text.=  "leverancier: ";
-		echo "$text";
+			echo $query."</br>".$query2."</br>".$query3."</br>";
+			
+		
+		
+		$naar = "";
+		$van = $_SESSION['naam'];
+		$onderwerp = $_SESSION['naam']." heeft een verzoek gestuurd om een product toe te voegen aan de database";
+		$text = "<h5 align=\"center\">De volgende gegevens worden verstuurd:</h5></br>";
+									$text.= "Productnaam: ".$product."</br>";
+									$text.= "Prijs: €".$prijs."</br>";
+									$text.= "Omschrijving product: ".$omschrijving."</br>";
+									$text.= "Leverancier: ".$leverancier."</br>";
+									$text.= "Straat + huisnummer: ".$straat." ".$straatnr."</br>";
+									$text.= "Postcode: ".$postcode."</br>";
+									$text.= "Land: ".$land."</br>";
+									$text.= "Telefoonnummer: ".$telnr."</br>";
+									$text.= "E-mailadres: ".$email."</br>";
+																	$text.= "<a href = *> Aanvraag behandelen </a>";
+																	
+																	echo $text;
+		SentPMnP (14, $_SESSION['ID'], FALSE, $onderwerp, $text);
+		
+
+	
 }
+
 else
 {
 	?>
@@ -341,7 +399,7 @@ else
 					<div class="float-right text-right"> €      </div>
 			</td>
 			<td>
-					<input type="number" id="prijs" name="productprijs" required>
+					<input type="number" id="prijs" name="productprijs" step='0.01' required>
 				
 			
 			</td>
@@ -357,7 +415,6 @@ else
 					<select type="number"name="leverancier" id="leverancier" required>
 						<?php
 						include 'Query.php';
-						include 'myFunctions.php';
 						echo dropdownleveranciers();
 							
 						?>

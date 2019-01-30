@@ -53,6 +53,23 @@ function getLeveransiers()
 	return $x;
 }
 
+function getFactuur($ID)
+{
+	include 'db.php';
+	$query = "SELECT `ProductID` AS 'ID' FROM `producten` where `LeveranciersID` IN (SELECT `LeverancierID` FROM factuur WHERE `OderID` =".$ID.");";
+	$result = mysqli_query($db, $query);
+	$x=array();
+	//echo $query;
+	if (mysqli_num_rows($result) > 0) {
+	while($row = mysqli_fetch_assoc($result)) {
+		
+	array_push($x,$row["ID"]);
+	
+	}}
+		
+	return $x;
+}
+
 function getProductens()
 {
 	include 'db.php';
