@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 30, 2019 at 03:58 PM
--- Server version: 10.1.35-MariaDB
--- PHP Version: 7.2.9
+-- Generation Time: Jan 31, 2019 at 01:26 AM
+-- Server version: 10.1.36-MariaDB
+-- PHP Version: 7.2.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -141,8 +141,9 @@ CREATE TABLE `factuur` (
 --
 
 INSERT INTO `factuur` (`factuurnummer`, `OderID`, `Status`, `LeverancierID`) VALUES
-(1, 23, 'Nieuw', 10),
-(2, 23, 'Nieuw', 11);
+(133, 23, 'Nieuw', 10),
+(134, 23, 'Nieuw', 10),
+(135, 23, 'Nieuw', 11);
 
 -- --------------------------------------------------------
 
@@ -257,7 +258,16 @@ INSERT INTO `pm` (`id`, `van`, `naar`, `status`, `OrderID`, `admin`, `onderwerp`
 (29, 8, 11, '0', 54, '', 'Aankoopverzoek van Pretzel', '2019-01-30 08:33:39', 'test!'),
 (30, 11, 11, '0', 55, '', 'Aankoopverzoek van BuyerIT', '2019-01-30 09:57:21', 'Hooi!'),
 (31, 11, 1, '0', 56, '', 'Aankoopverzoek van BuyerIT: ', '2019-01-30 09:58:21', 'test\n\n<a href=\"ApproveOrDeny.php?ID=56&naam=BuyerIT\">Verwerken</b></a>'),
-(32, 11, 11, '0', 56, '', 'Nieuwe bestelling van BuyerIT', '2019-01-30 09:58:33', 'test<br/>Deze bestelling is goed gekeurd door de manager:BuyerIT');
+(32, 11, 11, '0', 56, '', 'Nieuwe bestelling van BuyerIT', '2019-01-30 09:58:33', 'test<br/>Deze bestelling is goed gekeurd door de manager:BuyerIT'),
+(33, 1, 14, '0', NULL, '', 'SYSTEEM: Admin heeft een verzoek gestuurd om een product toe te voegen aan de database', '2019-01-30 15:56:28', '<h5 align=\"center\">De volgende gegevens worden verstuurd:</h5></br>Productnaam: </br>Prijs: â‚¬</br>Omschrijving product: </br>Leverancier: </br>Straat + huisnummer:  </br>Postcode: </br>Land: </br>Telefoonnummer: </br>E-mailadres: </br><a href = *> Aanvraag behandelen </a>'),
+(34, 1, 14, '0', NULL, '', 'SYSTEEM: Admin heeft een verzoek gestuurd om een product toe te voegen aan de database', '2019-01-30 16:00:11', '<h5 align=\"center\">De volgende gegevens worden verstuurd:</h5></br>Productnaam: </br>Prijs: â‚¬</br>Omschrijving product: </br>Leverancier: </br>Straat + huisnummer:  </br>Postcode: </br>Land: </br>Telefoonnummer: </br>E-mailadres: </br><a href = *> Aanvraag behandelen </a>'),
+(35, 1, 14, '0', NULL, '', 'SYSTEEM: Admin heeft een verzoek gestuurd om een product toe te voegen aan de database', '2019-01-30 16:00:39', '<h5 align=\"center\">De volgende gegevens worden verstuurd:</h5></br>Productnaam: </br>Prijs: â‚¬</br>Omschrijving product: </br>Leverancier: </br>Straat + huisnummer:  </br>Postcode: </br>Land: </br>Telefoonnummer: </br>E-mailadres: </br><a href = *> Aanvraag behandelen </a>'),
+(36, 1, 14, '0', NULL, '', 'SYSTEEM: Admin heeft een verzoek gestuurd om een product toe te voegen aan de database', '2019-01-30 16:01:36', '<h5 align=\"center\">De volgende gegevens worden verstuurd:</h5></br>Productnaam: </br>Prijs: â‚¬</br>Omschrijving product: </br>Leverancier: </br>Straat + huisnummer:  </br>Postcode: </br>Land: </br>Telefoonnummer: </br>E-mailadres: </br><a href = *> Aanvraag behandelen </a>'),
+(37, 1, 14, '0', NULL, '', 'SYSTEEM: Admin heeft een verzoek gestuurd om een product toe te voegen aan de database', '2019-01-30 16:01:38', '<h5 align=\"center\">De volgende gegevens worden verstuurd:</h5></br>Productnaam: </br>Prijs: â‚¬</br>Omschrijving product: </br>Leverancier: </br>Straat + huisnummer:  </br>Postcode: </br>Land: </br>Telefoonnummer: </br>E-mailadres: </br><a href = *> Aanvraag behandelen </a>'),
+(38, 1, 14, '0', NULL, '', 'SYSTEEM: Admin heeft een verzoek gestuurd om een product toe te voegen aan de database', '2019-01-30 16:01:39', '<h5 align=\"center\">De volgende gegevens worden verstuurd:</h5></br>Productnaam: </br>Prijs: â‚¬</br>Omschrijving product: </br>Leverancier: </br>Straat + huisnummer:  </br>Postcode: </br>Land: </br>Telefoonnummer: </br>E-mailadres: </br><a href = *> Aanvraag behandelen </a>'),
+(39, 1, 14, '0', NULL, '', 'SYSTEEM: Admin heeft een verzoek gestuurd om een product toe te voegen aan de database', '2019-01-30 16:01:43', '<h5 align=\"center\">De volgende gegevens worden verstuurd:</h5></br>Productnaam: </br>Prijs: â‚¬</br>Omschrijving product: </br>Leverancier: </br>Straat + huisnummer:  </br>Postcode: </br>Land: </br>Telefoonnummer: </br>E-mailadres: </br><a href = *> Aanvraag behandelen </a>'),
+(40, 1, 14, '0', NULL, '', 'SYSTEEM: Admin heeft een verzoek gestuurd om een product toe te voegen aan de database', '2019-01-30 16:04:24', '<h5 align=\"center\">De volgende gegevens worden verstuurd:</h5></br>Productnaam: </br>Prijs: â‚¬</br>Omschrijving product: </br>Leverancier: </br>Straat + huisnummer:  </br>Postcode: </br>Land: </br>Telefoonnummer: </br>E-mailadres: </br><a href = *> Aanvraag behandelen </a>'),
+(41, 1, 14, '0', NULL, '', 'SYSTEEM: Admin heeft een verzoek gestuurd om een product toe te voegen aan de database', '2019-01-30 16:07:50', '<h5 align=\"center\">De volgende gegevens worden verstuurd:</h5></br>Productnaam: 1</br>Prijs: â‚¬1</br>Omschrijving product: 1</br>Leverancier: Bol.com</br>Straat + huisnummer:  </br>Postcode: </br>Land: </br>Telefoonnummer: </br>E-mailadres: </br><a href = *> Aanvraag behandelen </a>');
 
 -- --------------------------------------------------------
 
@@ -418,7 +428,7 @@ ALTER TABLE `bestelling`
 -- AUTO_INCREMENT for table `factuur`
 --
 ALTER TABLE `factuur`
-  MODIFY `factuurnummer` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `factuurnummer` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=136;
 
 --
 -- AUTO_INCREMENT for table `gebruiker`
@@ -436,7 +446,7 @@ ALTER TABLE `leveranciers`
 -- AUTO_INCREMENT for table `pm`
 --
 ALTER TABLE `pm`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- AUTO_INCREMENT for table `producten`
@@ -464,8 +474,7 @@ ALTER TABLE `bestelling`
 -- Constraints for table `factuur`
 --
 ALTER TABLE `factuur`
-  ADD CONSTRAINT `factuur_ibfk_1` FOREIGN KEY (`OderID`) REFERENCES `bestelling` (`BestellingID`) ON DELETE NO ACTION ON UPDATE CASCADE,
-  ADD CONSTRAINT `factuur_ibfk_2` FOREIGN KEY (`LeverancierID`) REFERENCES `leveranciers` (`LeverancierID`);
+  ADD CONSTRAINT `factuur_ibfk_1` FOREIGN KEY (`OderID`) REFERENCES `bestelling` (`BestellingID`) ON DELETE NO ACTION ON UPDATE CASCADE;
 
 --
 -- Constraints for table `pm`
